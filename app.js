@@ -8,6 +8,21 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dishRouter = require('./routes/dishRouter');
 
+
+//connect to mongodb using mongoose 
+
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
+const Dishes = require('./model/dishes');
+
+const url = 'mongodb://localhost:27017/confusion_mongoose';
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+console.log('Connected to mongodb using mongoose');
+}, (err) => { console.log('could not connect: testing : ',err);});
+
 var app = express();
 
 // view engine setup
